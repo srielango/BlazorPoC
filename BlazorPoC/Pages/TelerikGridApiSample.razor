@@ -1,0 +1,37 @@
+﻿@page "/telerikGridApiSample"
+@using BlazorPoC.Models;
+@using BlazorPoC.Services;
+
+<h3>Telerik Grid Api Sample</h3>
+
+<TelerikGrid Data="@GridData"
+             Pageable="true"
+             Sortable="true"
+             FilterMode="@GridFilterMode.FilterRow">
+    <GridColumns>
+        <GridColumn Field="Name" Title="Name" />
+        <GridColumn Field="Price" DisplayFormat="{0:C2}" Title="Rate"/>
+        <GridColumn Field="@nameof(Product.Released)" DisplayFormat="{0:D}" Title="Available From"/>
+        <GridColumn Field=@nameof(Product.Avatar) Width="100px">
+            <Template>
+                @{
+                    var product = context as Product;
+                    <img src="@(product.Avatar)" alt="@product.Name" width="55" height="35" />
+                }
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</TelerikGrid>
+
+@code {
+    [Inject] IProductService productService { get; set; }
+
+    private List<Product> GridData { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        GridData = await productService.GetProducts();
+        base.OnInitialized();
+    }
+}
