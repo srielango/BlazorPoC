@@ -16,16 +16,7 @@
 }
 else
 {
-    <div style="padding:10px">
-        <TelerikSlider @bind-Value="@forecastCount"
-                   Min="1"
-                   Max="10"
-                   SmallStep="1"
-                   LargeStep="1"
-                   Width="550px">
-        </TelerikSlider>
-    </div>
-
+    
     <div>
         <WeatherData ForecastCount="@forecastCount"></WeatherData>
     </div>

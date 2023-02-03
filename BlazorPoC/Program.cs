@@ -12,7 +12,6 @@ var appConfig = builder.Configuration.GetSection("AppConfig").Get<AppConfig>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddTelerikBlazor();
 builder.Services.AddHttpClient<IProductService, ProductService>
     (client =>
     {
